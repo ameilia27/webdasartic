@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Toko Buku Online</title>
+  <style>
+    #header {
+      background-color: pink;
+      color: white;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    #header img {
+      width: 80px;
+      height: 80px;
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      border-radius: 10px;
+    }
+
+    #menu {
+      background-color: tan;
+      padding: 15px;
+      width: 20%;
+      float: left;
+      height: 400px;
+      box-sizing: border-box;
+    }
+
+    #content {
+      background-color: white;
+      padding: 15px;
+      width: 75%;
+      float: left;
+      height: 400px;
+      box-sizing: border-box;
+    }
+
+    .book {
+      background-color: tan;
+      margin: 10px;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    .clearfix::after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    a {
+      display: block;
+      margin-bottom: 10px;
+      color: blue;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="header">
+    <img src="logo web loyalty.jpeg">
+    <h1>Selamat Datang di Toko Buku Online LOYALTY</h1>
+  </div>
+
+  <div class="clearfix">
+    <div id="menu">
+      <h3>Menu</h3>
+      <a href="Quiz5.html">BUKU</a>
+      <a href="Quiz6.html">MAJALAH</a>
+      <a href="Quiz7.html">KORAN</a>
+
+      <h3>Kategori</h3>
+      <ul>
+        <li>Fiksi</li>
+        <li>Non-Fiksi</li>
+        <li>Novel</li>
+        <li>Self Improvement</li>
+      </ul>
+    </div>
+
+    <div id="content">
+      <h2>Best Seller</h2>
+      <div class="book">
+        <h3>Laskar Pelangi</h3>
+        <p>Penulis: Andrea Hirata</p>
+      </div>
+      <div class="book">
+        <h3>Bumi</h3>
+        <p>Penulis: Tere Liye</p>
+      </div>
+      <div class="book">
+	    <h3>Negara 5 Menara</h3>
+		<p>Penulis: Ahmad Fuadi</p>
+	  </div> 
+    </div>
+  </div>
+
+</body>
+</html>
