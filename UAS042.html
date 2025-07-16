@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Toko Buku Online</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #f4f4f4;
+        }
+
+        header {
+            background-color: pink;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: gray;
+            padding: 10px 0;
+        }
+
+        nav button {
+            background: none;
+            border: none;
+            color: white;
+            margin: 0 15px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        nav button:hover {
+            text-decoration: underline;
+        }
+
+        .sub-menu {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .sub-menu button {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            background-color: #ff9900;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .sub-menu button:hover {
+            background-color: #cc7a00;
+        }
+
+        .main-content {
+            padding: 30px;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .best-seller button {
+            background-color: pink;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            margin: 10px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .best-seller button:hover {
+            background-color: gray;
+        }
+
+        .info-box {
+            display: none;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            width: 60%;
+            margin: 20px auto;
+            text-align: left;
+        }
+
+        footer {
+            text-align: center;
+            background-color: gray;
+            color: white;
+            padding: 15px;
+            margin-top: 40px;
+        }
+		
+		img.logo{
+		  height: 60px;
+		}
+		
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+	  <img src="logo web loyalty.jpeg" weight="100px" height="100px">
+	  <div class="auth-links">
+	    <a href="latihan20.html">Registrasi</a>
+		<a href="latihan21.html">Login</a>
+      </div>
+	</div>
+	
+    <header>
+        <h1>TOKO BUKU LOYALTY</h1>
+        <p>Teman Setia Pecinta Buku</p>
+    </header>
+
+    <nav>
+        <button onclick="kembaliHome()">Home</button>
+		<button onclick="showSub('buku')">Buku</button>
+        <button onclick="showSub('majalah')">Majalah</button>
+        <button onclick="showSub('koran')">Koran</button>
+    </nav>
+
+    <div class="sub-menu" id="subMenu"></div>
+
+    <div class="main-content">
+        <p class="section-title">Buku-Buku Best Seller</p>
+        <div class="best-seller">
+            <button onclick="tampilkanBuku('1')">Buku Best Seller 1</button>
+            <button onclick="tampilkanBuku('2')">Buku Best Seller 2</button>
+        </div>
+
+        <div class="info-box" id="infoBox"></div>
+    </div>
+	
+	<div class="info-box" id="kategoriBox"></div>
+	<div class="sub-menu" id="subKategoriBox"></div>
+	<div class="info-box" id="bukuBox"></div>
+	
+	<div class="info-box" id="majalahBox"></div>
+	<div class="info-box" id="koranBox"></div>
+
+    <footer>
+        &copy; 2025 Toko Buku Loyalty | Dibuat oleh loyalty
+    </footer>
+
+    <script>
+        function kembaliHome() {
+    document.getElementById("subMenu").innerHTML = "";
+    document.getElementById("subKategoriBox").innerHTML = "";
+    document.getElementById("infoBox").style.display = "none";
+    document.getElementById("bukuBox").style.display = "none";
+    document.getElementById("majalahBox").style.display = "none";
+    document.getElementById("koranBox").style.display = "none";
+}
+		
+		function showSub(menu) {
+            const subMenu = document.getElementById("subMenu");
+            let html = "";
+
+            if (menu === "buku") {
+                html = `
+                    <button onclick="tampilkanKategori('fiksi')">Fiksi</button>
+                    <button onclick="tampilkanKategori('nonfiksi')">Nonfiksi</button>
+                `;
+            } else if (menu === "majalah") {
+                html = `
+                    <button onclick="tampilkanMajalah('umum')">Umum</button>
+                    <button onclick="tampilkanMajalah('khusus')">Khusus</button>
+                `;
+            } else if (menu === "koran") {
+                html = `
+                    <button onclick="tampilkanKoran('harian')">Koran Harian</button>
+                    <button onclick="tampilkanKoran('mingguan')">Koran Mingguan</button>
+                `;
+            }
+
+            subMenu.innerHTML = html;
+        }
+
+        function tampilkanBuku(id) {
+            const info = document.getElementById("infoBox");
+            let isi = "";
+
+            if (id === "1") {
+    isi = `
+        <img src="jejak.jpeg" alt="Jejak Sang Juara" style="width:150px; border-radius:10px; margin-bottom:10px;">
+        <h3>Judul: Jejak Sang Juara</h3>
+        <p>Sinopsis: Buku motivasi yang mengisahkan perjalanan hidup seorang juara dari nol hingga sukses. Cocok untuk remaja dan dewasa.</p>
+    `;
+} else if (id === "2") {
+    isi = `
+        <img src="dunia.WEBP" alt="Dunia Tanpa Batas" style="width:150px; border-radius:10px; margin-bottom:10px;">
+        <h3>Judul: Dunia Tanpa Batas</h3>
+        <p>Sinopsis: Novel fiksi ilmiah yang membawa pembaca menjelajahi dunia masa depan dengan teknologi canggih.</p>
+    `;
+}
+
+            info.innerHTML = isi;
+            info.style.display = "block";
+        }
+	     function tampilkanKategori(kategori) {
+             const kategoriBox = document.getElementById("kategoriBox");
+             const subKategoriBox = document.getElementById("subKategoriBox");
+             const bukuBox = document.getElementById("bukuBox");
+
+        kategoriBox.style.display = "none";
+        bukuBox.style.display = "none";
+
+             let html = "";
+             if (kategori === "fiksi") {
+            html = `
+                <button onclick="tampilkanSubKategori('cerita')">Cerita Rakyat</button>
+                <button onclick="tampilkanSubKategori('komik')">Komik</button>
+                <button onclick="tampilkanSubKategori('puisi')">Puisi</button>
+            `;
+        } else if (kategori === "nonfiksi") {
+            html = `
+                <button onclick="tampilkanSubKategori('biografi')">Biografi</button>
+                <button onclick="tampilkanSubKategori('kesehatan')">Kesehatan</button>
+                <button onclick="tampilkanSubKategori('motivasi')">Motivasi</button>
+            `;
+        }
+
+        subKategoriBox.innerHTML = html;
+        subKategoriBox.style.display = "block";
+    }
+
+         function tampilkanMajalah(tipe) {
+             const subKategoriBox = document.getElementById("subKategoriBox");
+             const bukuBox = document.getElementById("bukuBox");
+
+        bukuBox.style.display = "none";
+
+             let html = "";
+             if (tipe === "umum") {
+            html = `
+                <button onclick="tampilkanMajalahDetail('hiburan')">Hiburan</button>
+                <button onclick="tampilkanMajalahDetail('berita')">Berita</button>
+                <button onclick="tampilkanMajalahDetail('kecantikan')">Kecantikan</button>
+        `;
+        } else if (tipe === "khusus") {
+             html = `
+                 <button onclick="tampilkanMajalahDetail('musik')">Musik</button>
+                 <button onclick="tampilkanMajalahDetail('ilmiah')">Ilmiah</button>
+                 <button onclick="tampilkanMajalahDetail('olahraga')">Olahraga</button>
+        `;
+    }
+
+    subKategoriBox.innerHTML = html;
+    subKategoriBox.style.display = "block";
+}
+
+         function tampilkanKoran(tipe) {
+             const subKategoriBox = document.getElementById("subKategoriBox");
+             const bukuBox = document.getElementById("bukuBox");
+
+    bukuBox.style.display = "none";
+
+    let html = "";
+    if (tipe === "harian") {
+        html = `
+            <button onclick="tampilkanKoranDetail('kompas')">Kompas</button>
+            <button onclick="tampilkanKoranDetail('tribun')">Tribun</button>
+            <button onclick="tampilkanKoranDetail('jawapos')">Jawa Pos</button>
+        `;
+    } else if (tipe === "mingguan") {
+        html = `
+            <button onclick="tampilkanKoranDetail('zonasi')">Koran Zonasi</button>
+            <button onclick="tampilkanKoranDetail('bahagia')">Mingguan Bahagia</button>
+            <button onclick="tampilkanKoranDetail('kontan')">Tabloid Kontan</button>
+        `;
+    }
+
+    subKategoriBox.innerHTML = html;
+    subKategoriBox.style.display = "block";
+}
+
+    function tampilkanSubKategori(sub) {
+        const bukuBox = document.getElementById("bukuBox");
+        let konten = "";
+
+        if (sub === "cerita") {
+            konten =			`
+                <div class="buku-item">
+				<img src="danau.JPG" alt="Cerita Rakyat" style="width:150px; border-radius:10px; margin-bottom:10px;">
+				<h3>Judul: Legenda Danau Toba</h3>
+				<p><strong>Penulis:</strong> Andi Nugroho</p>
+                <p><strong>Penerbit:</strong> Semangat Baru</p>
+                <p><strong>Sinopsis:</strong> Cerita rakyat dari Sumatera Utara yang mengisahkan asal usul Danau Toba dan Samosir.</p>
+				<button style="padding:10px 20px; background-color:#28a745; color:white; border:none; border-radius:5px; cursor:pointer;"> Beli Sekarang
+				</button>
+				</div>
+				
+				<<div class="buku-item">
+				<img src="timun.JPG" alt="Cerita Rakyat" style="width:150px; border-radius:10px; margin-bottom:10px;">
+				<h3>Judul: Timun Mas</h3>
+				<p><strong>Penulis:</strong> Rahmah Asa</p>
+                <p><strong>Penerbit:</strong> Pustaka Pelajar</p>
+                <p><strong>Sinopsis:</strong> Cerita rakyat mengisahkan seorang janda tua Mbok Randa, sangat menginginkan anak.Ia bertemu raksasa yang memberinya biji mentimun ajaib.</p>
+				<button style="padding:10px 20px; background-color:#28a745; color:white; border:none; border-radius:5px; cursor:pointer;"> Beli Sekarang
+				</button>
+				</div>
+
+                <div class="buku-item">
+                <img src="cinderella.JPG" alt="Cerita Rakyat" style="width:150px; border-radius:10px; margin-bottom:10px;">
+				<h3>Judul: Cinderella</h3>
+				<p><strong>Penulis:</strong> Charles Perrault</p>
+                <p><strong>Penerbit:</strong> Gramedia</p>
+                <p><strong>Sinopsis:</strong> Kisah seorang gadis muda yang hidup beresama ibu tiri dan dua saudara tirinya yang jahat.</p>
+				<button style="padding:10px 20px; background-color:#28a745; color:white; border:none; border-radius:5px; cursor:pointer;"> Beli Sekarang
+				</button>
+				</div>
+
+            `;
+        } else if (sub === "komik") {
+            konten = `
+                <div class="buku-item">
+				<img src="dragon.JPG" alt="Komik" style="width:150px; border-radius:10px; margin-bottom:10px;">
+				<h3>Judul: Dragon Ball</h3>
+				<p><strong>Penulis:</strong> Akira Toriyama</p>
+                <p><strong>Penerbit:</strong> Elex Media Komputindo</p>
+                <p><strong>Sinopsis:</strong> Dragon Ball mengisahkan petualangan Son Goku, seorang anak laki-laki berekor monyet yang memiliki kekuatan luar biasa. Ia memulai perjalanan untuk mengumpulkan tujuh bola naga (Dragon Ball), benda legendaris yang dapat memanggil naga Shenlong untuk mengabulkan satu permintaan siapa pun yang berhasil mengumpulkannya..</p>
+				<button style="padding:10px 20px; background-color:#28a745; color:white; border:none; border-radius:5px; cursor:pointer;"> Beli Sekarang
+				</button>
+				</div>
+				
+				<div class="buku-item">
+				<img src="pokemon.JPG" alt="Komik" style="width:150px; border-radius:10px; margin-bottom:10px;">
+				<h3>Judul: Pokemon Advanture</h3>
+				<p><strong>Penulis:</strong> Hidenori Kusaka</p>
+                <p><strong>Penerbit:</strong> Elex Media Komputindo</p>
+                <p><strong>Sinopsis:</strong> Pokemon Adventures merupakan adaptasi manga dari dunia Pokémon yang lebih dekat dengan alur gim Pokémon dibandingkan dengan versi anime..</p>
+				<button style="padding:10px 20px; background-color:#28a745; color:white; border:none; border-radius:5px; cursor:pointer;"> Beli Sekarang
+				</button>
+				</div>
+				
+				<div class="buku-item">
+				<img src="slam.JPEG" alt="Komik" style="width:150px; border-radius:10px; margin-bottom:10px;">
+				<h3>Judul: Slam Dunk</h3>
+				<p><strong>Penulis:</strong> Takehiko Inoue</p>
+                <p><strong>Penerbit:</strong> Elex Media Komputindo</p>
+                <p><strong>Sinopsis:</strong> Slam Dunk mengisahkan perjalanan Hanamichi Sakuragi, seorang siswa SMA yang terkenal sebagai pembuat onar dan belum pernah pacaran. Suatu hari, ia jatuh cinta pada seorang gadis bernama Haruko Akagi, yang menyukai olahraga basket..</p>
+				<button style="padding:10px 20px; background-color:#28a745; color:white; border:none; border-radius:5px; cursor:pointer;"> Beli Sekarang
+				</button>
+				</div>
+				
+            `;
+        } else if (sub === "puisi") {
+            konten = `
+                <div class="buku-item">
+				<img src="hujan.JPG" alt="Puisi" style="width:150px; border-radius:10px; margin-bottom:10px;">
+				<h3>Judul: Hujan Bulan Juni</h3>
+				<p><strong>Penulis:</strong> Sapardi Djoko Darmono</p>
+                <p><strong>Penerbit:</strong> PT. Gramedia Pustaka Utama</p>
+                <p><strong>Sinopsis:</strong> Puisi "Hujan Bulan Juni" adalah salah satu karya sastra Indonesia yang sangat terkenal.</p>
+				<button style="padding:10px 20px; background-color:#28a745; color:white; border:none; border-radius:5px; cursor:pointer;"> Beli Sekarang
+				</button>
+				</div>
+				
+				<div class="buku-item">
+				<img src="kemah.JPG" alt="Puisi" style="width:150px; border-radius:10px; margin-bottom:10px;">
+				<h3>Judul: Dalam Kemah</h3>
+				<p><strong>Penulis:</strong> Goenawam Mohamad</p>
+                <p><strong>Penerbit:</strong> Pustaka Jaya</p>
+                <p><strong>Sinopsis:</strong> Puisi "Dalam Kemah" adalah salah satu karya dari Goenawan Mohamad, seorang penyair, jurnalis, dan esais terkemuka Indonesia. Puisi ini termasuk dalam kumpulan puisinya yang reflektif dan sarat makna.</p>
+				<button style="padding:10px 20px; background-color:#28a745; color:white; border:none; border-radius:5px; cursor:pointer;"> Beli Sekarang
+				</button>
+				</div>
+				
+				<div class="buku-item">
+				<img src="dia.JPG" alt="Puisi" style="width:150px; border-radius:10px; margin-bottom:10px;">
+				<h3>Judul: Dia dan Aku</h3>
+				<p><strong>Penulis:</strong> Sitor Situmorang</p>
+                <p><strong>Penerbit:</strong> Pustaka Jaya</p>
+                <p><strong>Sinopsis:</strong> Puisi "Dia dan Aku" adalah salah satu karya terkenal dari Sitor Situmorang, penyair penting Angkatan '45 asal Sumatera Utara. Puisinya dikenal karena mengangkat tema cinta, eksistensi, dan alam dengan gaya liris yang khas.</p>
+				<button style="padding:10px 20px; background-color:#28a745; color:white; border:none; border-radius:5px; cursor:pointer;"> Beli Sekarang
+				</button>
+				</div>
+				
+            `;
+        } else if (sub === "biografi") {
+            konten = `
+                <div class="buku-item">
+				<img src="habibi.JPEG" alt="Biografi" style="width:150px; border-radius:10px; margin-bottom:10px;">
+				<h3>Judul: Kisah Hidup B.J. Habibie</h3>
+                <p><strong>Penulis:</strong> Sri Wintala Achmad</p>
+                <p><strong>Penerbit:</strong> Visi Mandiri</p>
+                <p><strong>Sinopsis:</strong> Buku Kisah Hidup B.J. Habibie mengisahkan perjalanan hidup B.J. Habibie, mulai dari masa kecilnya di Parepare, Sulawesi Selatan, hingga menjadi salah satu tokoh paling berpengaruh di Indonesia — seorang ilmuwan jenius, teknokrat, dan Presiden ketiga Republik Indonesia.</p>
+				<button style="padding:10px 20px; background-color:#28a745; color:white; border:none; border-radius:5px; cursor:pointer;"> Beli Sekarang
+				</button>
+				</div>
+				
+				<div class="buku-item">
+				<img src="buya.JPEG" alt="Biografi" style="width:150px; border-radius:10px; margin-bottom:10px;">
+				<h3>Judul: Buya Hamka</h3>
+                <p><strong>Penulis:</strong> Ahmad Fuadi</p>
+                <p><strong>Penerbit:</strong> Balai Pustaka</p>
+                <p><strong>Sinopsis:</strong> Novel Buya Hamka karya Ahmad Fuadi bertemakan perjuangan dan religi, yang di mana novel ini bercerita tantang masa kecil Hamka yang merupakan anak dari seorang ulama, hingga ia dewasa juga menjadi seorang ulama. Novel Buya Hamka juga bercerita tentang perjuangan Hamka pada masa revolusi dan penjajahan Jepang.</p>
+				<button style="padding:10px 20px; background-color:#28a745; color:white; border:none; border-radius:5px; cursor:pointer;"> Beli Sekarang
+				</button>
+				</div>
+				
+				<div class="buku-item">
+				<img src="soekarno.JPG" alt="Biografi" style="width:150px; border-radius:10px; margin-bottom:10px;">
+				<h3>Judul: Soekarno</h3>
+                <p><strong>Penulis:</strong> Taufik Adi Susilo</p>
+                <p><strong>Penerbit:</strong> Garasi</p>
+                <p><strong>Sinopsis:</strong> Soekarno adalah salah satu tokoh terpenting dalam sejarah Indonesia. Soekarno lahir pada 6 Juni 1901 di Surabaya, Jawa Timur, dan wafat pada tanggal 21 Juni 1970 di Jakarta. Soekarno memiliki peran penting dalam kemerdekaan Indonesia yaitu sebagai proklamator kemerdekaan Indonesia dan presiden pertama Indonesia.</p>
+				<button style="padding:10px 20px; background-color:#28a745; color:white; border:none; border-radius:5px; cursor:pointer;"> Beli Sekarang
+				</button>
+				</div>
+				
+            `;
+        } else if (sub === "kesehatan") {
+            konten = `
+                <div class="buku-item">
+				<img src="how.JPG" alt="Kesehatan" style="width:150px; border-radius:10px; margin-bottom:10px;">
+				<h3>Judul: How Not to Die</h3>
+				<p><strong>Penulis:</strong> Michael Greger dan Gege Stone</p>
+                <p><strong>Penerbit:</strong> Flatiron Books</p>
+                <p><strong>Sinopsis:</strong> Buku ini bakal membuatmu semangat untuk menjaga kesehatan. Buku yang menjadi best-selling ini memiliki tebal lebih dari 500 halaman. Meski setebal itu, kamu akan mendapatkan segudang manfaat dengan sajian yang dikemas sangat menarik sehingga mudah dan menyenangkan saat dibaca. Tidak seperti buku lain yang langsung membahas mengenai nutrisi di halaman-halaman awal, How to Not Die dimulai dengan memaparkan 15 penyakit mematikan yang membuat kamu memahami masalah kesehatan yang paling banyak terjadi, sehingga kamu dapat menghindarinya dengan memilih pola makan yang tepat.</p>
+				<button style="padding:10px 20px; background-color:#28a745; color:white; border:none; border-radius:5px; cursor:pointer;"> Beli Sekarang
+				</button>
+				</div>
+				
+				<div class="buku-item">
+				<img src="food.JPEG" alt="Kesehatan" style="width:150px; border-radius:10px; margin-bottom:10px;">
+				<h3>Judul: Food Rules</h3>
+				<p><strong>Penulis:</strong> Michael Pollan</p>
+                <p><strong>Penerbit:</strong>  Penguin Press</p>
+                <p><strong>Sinopsis:</strong> Ilmu nutrisi adalah bidang yang relatif baru. Setiap orang memiliki pemahaman sendiri tentang apa yang baik untuk mereka, sehingga satu sama lain cenderung bertentangan. Michael Pollan yang juga bekerja sebagai jurnalis mengumpulkan informasi sebanyak-banyaknya dan memberikan 64 aturan makan dalam buku ini. Buku ini sangat direkomendasikan untuk kamu yang baru mengenal topik tentang nutrisi dan makanan sehat.</p>
+				<button style="padding:10px 20px; background-color:#28a745; color:white; border:none; border-radius:5px; cursor:pointer;"> Beli Sekarang
+				</button>
+				</div>
+				
+				<div class="buku-item">
+				<img src="healing.JPG" alt="Kesehatan" style="width:150px; border-radius:10px; margin-bottom:10px;">
+				<h3>Judul: Healing with Whole Foods</h3>
+				<p><strong>Penulis:</strong> Paul Pitchford</p>
+                <p><strong>Penerbit:</strong> North Atlantic Books </p>
+                <p><strong>Sinopsis:</strong> Sejak muda, kita sering diarahkan untuk makan sayuran tapi tidak diberi tahu alasan mengapa. Buku bertemakan nutrisi dan holistik ini berguna sebagai referensi yang baik untuk semua hal yang berkaitan dengan kesehatan. Tidak hanya berpaku pada nutrisi, melainkan memberi tahu kamu sifat-sifat energi dari setiap makanan dan apa yang terjadi pada tubuhmu jika kamu mengonsumsinya.</p>
+				<button style="padding:10px 20px; background-color:#28a745; color:white; border:none; border-radius:5px; cursor:pointer;"> Beli Sekarang
+				</button>
+				</div>
+				
+            `;
+        } else if (sub === "motivasi") {
+            konten = `
+                <div class="buku-item">
+				<img src="pemimpi.JPG" alt="Motivasi" style="width:150px; border-radius:10px; margin-bottom:10px;">
+				<h3>Judul: Sang Pemimpi</h3>
+				<p><strong>Penulis:</strong> Andrea Hirata</p>
+                <p><strong>Penerbit:</strong> Biru Atma Jaya</p>
+                <p><strong>Sinopsis:</strong> Buku ini menceritakan kisah inspiratif tentang persahabatan dan perjuangan anak-anak di Belitung untuk meraih mimpi mereka. Kisah mereka yang penuh semangat dan pantang menyerah akan memotivasi kamu untuk mengejar mimpi dan tidak takut akan rintangan.</p>
+				<button style="padding:10px 20px; background-color:#28a745; color:white; border:none; border-radius:5px; cursor:pointer;"> Beli Sekarang
+				</button>
+				</div>
+				
+				<div class="buku-item">
+				<img src="teras.JPG" alt="Motivasi" style="width:150px; border-radius:10px; margin-bottom:10px;">
+				<h3>Judul: Filosofi Teras</h3>
+				<p><strong>Penulis:</strong> Henry Manampiring</p>
+                <p><strong>Penerbit:</strong> PT Kompas Media Nusantara</p>
+                <p><strong>Sinopsis:</strong> Filosofi Teras adalah sebuah buku pengantar filsafat Stoa yang dibuat khusus sebagai panduan moral anak muda. Buku ini ditulis untuk menjawab permasalahan tentang tingkat kekhawatiran yang cukup tinggi dalam skala nasional, terutama yang dialami oleh anak muda.</p>
+				<button style="padding:10px 20px; background-color:#28a745; color:white; border:none; border-radius:5px; cursor:pointer;"> Beli Sekarang
+				</button>
+				</div>
+				
+				<div class="buku-item">
+				<img src="atomic.JPG" alt="Motivasi" style="width:150px; border-radius:10px; margin-bottom:10px;">
+				<h3>Judul: Atomic Habits</h3>
+				<p><strong>Penulis:</strong> James Clear</p>
+                <p><strong>Penerbit:</strong> PT. Gramedia Pustaka Utama</p>
+                <p><strong>Sinopsis:</strong> Buku ini membahas tentang bagaimana membangun kebiasaan baik dan menghilangkan kebiasaan buruk. Dengan menerapkan ilmu dalam buku ini, kamu dapat meningkatkan produktivitas dan mencapai tujuanmu dengan lebih mudah.</p>
+				<button style="padding:10px 20px; background-color:#28a745; color:white; border:none; border-radius:5px; cursor:pointer;"> Beli Sekarang
+				</button>
+				</div>
+				
+            `;
+        }
+
+        bukuBox.innerHTML = konten;
+        bukuBox.style.display = "block";
+}
+
+         function tampilkanMajalahDetail(kategori) {
+             const bukuBox = document.getElementById("bukuBox");
+             let isi = "";
+
+    if (kategori === "hiburan") {
+        isi = `
+            <div class="buku-item">
+			<img src="selebriti.JPG" alt="Majalah Hiburan" style="width:150px; margin-bottom:10px;">
+            <h3>Judul: Dunia Selebriti</h3>
+            <p><strong>Penulis:</strong> Media Hiburan</p>
+            <p><strong>Penerbit:</strong> Bintang Populer</p>
+            <p><strong>Sinopsis:</strong> Kupas tuntas dunia selebriti, gosip artis terkini, dan gaya hidup mewah mereka.</p>
+            <button style="padding:10px 20px; background-color:#28a745; color:white; border:none; border-radius:5px;">Beli Sekarang</button>
+			</div>
+			
+			<div class="buku-item">
+			<img src="hai.JPG" alt="Majalah Hiburan" style="width:150px; margin-bottom:10px;">
+            <h3>Judul: Hai Magazine</h3>
+            <p><strong>Penulis:</strong> Redaksi Hai</p>
+            <p><strong>Penerbit:</strong> Kompas Gramedia</p>
+            <p><strong>Sinopsis:</strong> Hai Magazine adalah salah satu majalah hiburan remaja legendaris di Indonesia yang pertama kali terbit pada tahun 1977. Fokus utama majalah ini adalah dunia musik, film, gaya hidup, dan tren anak muda. Hai dikenal karena liputan mendalam mengenai musisi lokal maupun internasional, review album, wawancara eksklusif dengan artis, serta rubrik kreatif seperti cerpen remaja, komik, dan opini.</p>
+            <button style="padding:10px 20px; background-color:#28a745; color:white; border:none; border-radius:5px;">Beli Sekarang</button>
+			</div>
+			
+			<div class="buku-item">
+			<img src="rolling.JPEG" alt="Majalah Hiburan" style="width:150px; margin-bottom:10px;">
+            <h3>Judul: Rolling Stone Indonesia</h3>
+            <p><strong>Penulis:</strong> Tim Redaksi Rolling Stone Indonesia</p>
+            <p><strong>Penerbit:</strong> PT a&e Media</p>
+            <p><strong>Sinopsis:</strong> Rolling Stone Indonesia adalah versi lokal dari majalah musik dan budaya pop legendaris Rolling Stone yang berasal dari Amerika Serikat. Terbit pertama kali di Indonesia pada tahun 2005, majalah ini menyajikan liputan mendalam seputar musik, hiburan, film, dan isu-isu budaya populer, baik dalam dan luar negeri.</p>
+            <button style="padding:10px 20px; background-color:#28a745; color:white; border:none; border-radius:5px;">Beli Sekarang</button>
+			</div>
+			
+        `;
+    } else if (kategori === "berita") {
+        isi = `
+            <div class="buku-item">
+			<img src="fokus.JPG" alt="Majalah Berita" style="width:150px; margin-bottom:10px;">
+            <h3>Judul: Fokus Dunia</h3>
+            <p><strong>Penulis:</strong> Redaksi Nasional</p>
+            <p><strong>Penerbit:</strong> Info Aktual</p>
+            <p><strong>Sinopsis:</strong> Majalah berita aktual yang menyajikan isu-isu politik, ekonomi, dan sosial dunia.</p>
+            <button style="padding:10px 20px; background-color:#28a745; color:white; border:none; border-radius:5px;">Beli Sekarang</button>
+			</div>
+			
+			<div class="buku-item">
+			<img src="tempo.JPG" alt="Majalah Berita" style="width:150px; margin-bottom:10px;">
+            <h3>Judul: Tempo</h3>
+            <p><strong>Penulis:</strong> Tim Redaksi Tempo</p>
+            <p><strong>Penerbit:</strong> PT Tempo Inti Media Tbk</p>
+            <p><strong>Sinopsis:</strong> Tempo adalah salah satu majalah berita paling berpengaruh di Indonesia. Didirikan pada tahun 1971 oleh Goenawan Mohamad, Tempo menyajikan laporan investigasi mendalam, ulasan politik, hukum, ekonomi, sosial, dan budaya. Majalah ini dikenal karena keberaniannya mengangkat isu-isu kontroversial dan kritis terhadap kekuasaan.</p>
+            <button style="padding:10px 20px; background-color:#28a745; color:white; border:none; border-radius:5px;">Beli Sekarang</button>
+			</div>
+			
+			<div class="buku-item">
+			<img src="gatra.JPG" alt="Majalah Berita" style="width:150px; margin-bottom:10px;">
+            <h3>Judul: Gatra</h3>
+            <p><strong>Penulis:</strong> Tim Redaksi Gatra</p>
+            <p><strong>Penerbit:</strong> PT Era Media Informasi</p>
+            <p><strong>Sinopsis:</strong> Gatra adalah majalah berita mingguan yang mulai terbit pada tahun 1994. Fokus utama majalah ini adalah isu-isu politik, ekonomi, pemerintahan, dan hukum. Gatra menawarkan sudut pandang yang tajam namun berbeda dari Tempo, dengan gaya penulisan yang lebih formal dan faktual.</p>
+            <button style="padding:10px 20px; background-color:#28a745; color:white; border:none; border-radius:5px;">Beli Sekarang</button>
+			</div>
+        `;
+    } else if (kategori === "kecantikan") {
+        isi = `
+            <div class="buku-item">
+			<img src="glow.WEBP" alt="Majalah Kecantikan" style="width:150px; margin-bottom:10px;">
+            <h3>Judul: Glow Up</h3>
+            <p><strong>Penulis:</strong> Tim BeautyCare</p>
+            <p><strong>Penerbit:</strong> Cantik Abadi</p>
+            <p><strong>Sinopsis:</strong> Tips makeup, skincare, dan perawatan diri untuk semua usia dan jenis kulit.</p>
+            <button style="padding:10px 20px; background-color:#28a745; color:white; border:none; border-radius:5px;">Beli Sekarang</button>
+			</div>
+			
+			<div class="buku-item">
+			<img src="cosmo.JPEG" alt="Majalah Kecantikan" style="width:150px; margin-bottom:10px;">
+            <h3>Judul: Cosmopolitan Indonesia</h3>
+            <p><strong>Penulis:</strong> Tim Redaksi Cosmopolitan Indonesia</p>
+            <p><strong>Penerbit:</strong> PT Hearst Magazines Indonesia</p>
+            <p><strong>Sinopsis:</strong> Cosmopolitan Indonesia adalah versi lokal dari majalah internasional ternama Cosmopolitan. Majalah ini menyasar perempuan muda urban yang modern, aktif, dan percaya diri. Isi majalah mencakup tips kecantikan, perawatan kulit, makeup, fashion, gaya hidup sehat, karier, hingga hubungan percintaan.</p>
+            <button style="padding:10px 20px; background-color:#28a745; color:white; border:none; border-radius:5px;">Beli Sekarang</button>
+			</div>
+			
+			<div class="buku-item">
+			<img src="world.JPG" alt="Majalah Kecantikan" style="width:150px; margin-bottom:10px;">
+            <h3>Judul: Her World</h3>
+            <p><strong>Penulis:</strong> Tim Editorial Her World Indonesia</p>
+            <p><strong>Penerbit:</strong> PT Media Group Digital</p>
+            <p><strong>Sinopsis:</strong> Her World Indonesia menyasar perempuan modern kelas menengah ke atas yang ingin tampil anggun, pintar, dan bergaya. Fokus utama majalah ini adalah tren kecantikan, makeup, perawatan wajah, produk skincare, fashion high-end, dan inspirasi gaya hidup elegan.</p>
+            <button style="padding:10px 20px; background-color:#28a745; color:white; border:none; border-radius:5px;">Beli Sekarang</button>
+			</div>
+        `;
+    } else if (kategori === "musik") {
+        isi = `
+            <div class="buku-item">
+			<img src="harmoni.JPG" alt="Majalah Musik" style="width:150px; margin-bottom:10px;">
+            <h3>Judul: Nada Harmoni</h3>
+            <p><strong>Penulis:</strong> Komunitas Musik Nusantara</p>
+            <p><strong>Penerbit:</strong> Nada Press</p>
+            <p><strong>Sinopsis:</strong> Bahas genre musik dari klasik hingga K-pop, wawancara artis, dan ulasan lagu terkini.</p>
+            <button style="padding:10px 20px; background-color:#28a745; color:white; border:none; border-radius:5px;">Beli Sekarang</button>
+			</div>
+			
+			<div class="buku-item">
+			<img src="nme.PNG" alt="Majalah Musik" style="width:150px; margin-bottom:10px;">
+            <h3>Judul: New Musical Express</h3>
+            <p><strong>Penulis:</strong> Tim Redaksi NME</p>
+            <p><strong>Penerbit:</strong> TI Media</p>
+            <p><strong>Sinopsis:</strong> NME adalah salah satu majalah musik paling berpengaruh di dunia, khususnya di ranah musik alternatif dan indie. Didirikan pada tahun 1952 di Inggris, NME terkenal dengan ulasan tajam, kritik musik, dan liputan festival seperti Glastonbury atau Reading & Leeds.</p>
+            <button style="padding:10px 20px; background-color:#28a745; color:white; border:none; border-radius:5px;">Beli Sekarang</button>
+			</div>
+			
+			<div class="buku-item">
+			<img src="trax.JPEG" alt="Majalah Musik" style="width:150px; margin-bottom:10px;">
+            <h3>Judul: Trax Magazine</h3>
+            <p><strong>Penulis:</strong> Tim Redaksi Trax</p>
+            <p><strong>Penerbit:</strong> PT Media Musikindo</p>
+            <p><strong>Sinopsis:</strong> Trax Magazine adalah majalah musik populer di kalangan remaja dan anak muda Indonesia, terutama pada era 2000-an. Fokus utamanya adalah musik lokal dan internasional yang sedang tren, terutama dari genre pop, rock, alternative, dan indie..</p>
+            <button style="padding:10px 20px; background-color:#28a745; color:white; border:none; border-radius:5px;">Beli Sekarang</button>
+			</div>
+        `;
+    } else if (kategori === "ilmiah") {
+        isi = `
+            <div class="buku-item">
+			<img src="sains.JPG" alt="Majalah Ilmiah" style="width:150px; margin-bottom:10px;">
+            <h3>Judul: Sains Kita</h3>
+            <p><strong>Penulis:</strong> Tim Peneliti Indonesia</p>
+            <p><strong>Penerbit:</strong> Cendekia Media</p>
+            <p><strong>Sinopsis:</strong> Majalah ilmiah populer yang menyederhanakan ilmu fisika, biologi, dan teknologi.</p>
+            <button style="padding:10px 20px; background-color:#28a745; color:white; border:none; border-radius:5px;">Beli Sekarang</button>
+			</div>
+			
+			<div class="buku-item">
+			<img src="geo.JPG" alt="Majalah Ilmiah" style="width:150px; margin-bottom:10px;">
+            <h3>Judul: National Geographic Indonesia</h3>
+            <p><strong>Penulis:</strong> Tim Redaksi National Geographic Indonesia</p>
+            <p><strong>Penerbit:</strong> PT Gramedia Majalah</p>
+            <p><strong>Sinopsis:</strong> National Geographic Indonesia adalah versi lokal dari majalah sains paling terkenal di dunia. Majalah ini menyajikan artikel ilmiah yang mudah dipahami, lengkap dengan foto-foto berkualitas tinggi. Isinya mencakup eksplorasi alam, penelitian ilmiah terbaru, konservasi lingkungan, sejarah, budaya, dan geografi.</p>
+            <button style="padding:10px 20px; background-color:#28a745; color:white; border:none; border-radius:5px;">Beli Sekarang</button>
+			</div>
+			
+			<div class="buku-item">
+			<img src="scien.WEBP" alt="Majalah Ilmiah" style="width:150px; margin-bottom:10px;">
+            <h3>Judul: Scientific American</h3>
+            <p><strong>Penulis:</strong> Ilmuwan dan Jurnalis Sains terkemuka</p>
+            <p><strong>Penerbit:</strong> Springer Nature</p>
+            <p><strong>Sinopsis:</strong> Scientific American adalah salah satu majalah ilmiah tertua dan paling dihormati di dunia, pertama kali terbit sejak 1845. Majalah ini menyajikan artikel yang ditulis langsung oleh ilmuwan dan peneliti profesional, namun dikemas untuk dapat dipahami oleh pembaca umum yang memiliki minat pada sains.</p>
+            <button style="padding:10px 20px; background-color:#28a745; color:white; border:none; border-radius:5px;">Beli Sekarang</button>
+			</div>
+        `;
+    } else if (kategori === "olahraga") {
+        isi = `
+            <div class="buku-item">
+			<img src="sport.JPG" alt="Majalah Olahraga" style="width:150px; margin-bottom:10px;">
+            <h3>Judul: Sportzone</h3>
+            <p><strong>Penulis:</strong> Sport Media Team</p>
+            <p><strong>Penerbit:</strong> Atletik Global</p>
+            <p><strong>Sinopsis:</strong> Info sepak bola, bulutangkis, dan cabang olahraga favorit lengkap dengan jadwal dan skor.</p>
+            <button style="padding:10px 20px; background-color:#28a745; color:white; border:none; border-radius:5px;">Beli Sekarang</button>
+			</div>
+			
+			<div class="buku-item">
+			<img src="ilustrasi.JPG" alt="Majalah Olahraga" style="width:150px; margin-bottom:10px;">
+            <h3>Judul: Sport Illustrated</h3>
+            <p><strong>Penulis:</strong> Tim Redaksi Sport Illustrated</p>
+            <p><strong>Penerbit:</strong> Authentic Brands Group</p>
+            <p><strong>Sinopsis:</strong> Sports Illustrated adalah salah satu majalah olahraga paling populer di dunia, pertama kali terbit pada tahun 1954. Majalah ini meliput berbagai jenis olahraga seperti sepak bola, basket, tenis, golf, balap, dan Olimpiade, dengan fokus utama pada atlet profesional dan kisah inspiratif di balik pertandingan.</p>
+            <button style="padding:10px 20px; background-color:#28a745; color:white; border:none; border-radius:5px;">Beli Sekarang</button>
+			</div>
+			
+			<div class="buku-item">
+			<img src="bola.JPEG" alt="Majalah Olahraga" style="width:150px; margin-bottom:10px;">
+            <h3>Judul: Bola/ Tabloid Bola</h3>
+            <p><strong>Penulis:</strong> TIm Redaksi Bola</p>
+            <p><strong>Penerbit:</strong> Kompas Gramedia Group</p>
+            <p><strong>Sinopsis:</strong> Tabloid Bola adalah media olahraga legendaris di Indonesia yang pertama kali terbit pada 1984. Fokus utamanya adalah sepak bola nasional dan internasional, termasuk Liga Indonesia, Liga Inggris, Liga Champions, Piala Dunia, dan berita seputar pemain.</p>
+            <button style="padding:10px 20px; background-color:#28a745; color:white; border:none; border-radius:5px;">Beli Sekarang</button>
+			</div>
+        `;
+    }
+
+    bukuBox.innerHTML = isi;
+    bukuBox.style.display = "block";
+}
+
+         function tampilkanKoranDetail(koran) {
+             const bukuBox = document.getElementById("bukuBox");
+             let isi = "";
+
+    if (koran === "kompas") {
+        isi = `
+            <div class="buku-item">
+			<img src="kompas.JPEG" style="width:150px; margin-bottom:10px;">
+            <h3>Judul: Kompas Edisi Hari Ini</h3>
+            <p><strong>Penerbit:</strong> Harian Kompas</p>
+            <p><strong>Berita Utama:</strong> Pemerintah Tetapkan Kebijakan Baru untuk Pendidikan Nasional.</p>
+            <button style="padding:10px 20px; background-color:#28a745; color:white; border:none; border-radius:5px;">Beli Sekarang</button>
+			</div>
+			
+			<div class="buku-item">
+			<img src="17ags.JPEG" style="width:150px; margin-bottom:10px;">
+            <h3>Judul: Indonesia di Persimpangan Energi</h3>
+            <p><strong>Penerbit:</strong> PT Kompas Media Nusantara</p>
+            <p><strong>Berita Utama:</strong> Berita ini mengangkat isu transisi energi di Indonesia, menyoroti ketergantungan terhadap energi fosil serta tantangan menuju energi terbarukan. Edisi ini dikaitkan dengan peringatan Hari Kemerdekaan RI ke-78 dan fokus pada kemandirian energi nasional.</p>
+            <button style="padding:10px 20px; background-color:#28a745; color:white; border:none; border-radius:5px;">Beli Sekarang</button>
+			</div>
+			
+			<div class="buku-item">
+			<img src="15feb.WEBP" style="width:150px; margin-bottom:10px;">
+            <h3>Judul: Pemilu 2024 Rakyat Telah dipilih</h3>
+            <p><strong>Penerbit:</strong> PT Kompas Media Nusantara</p>
+            <p><strong>Berita Utama:</strong> Berita utama membahas pelaksanaan Pemilihan Umum 2024 yang berlangsung lancar, partisipasi pemilih yang tinggi, serta analisis awal hasil quick count untuk pilpres dan pileg. Kompas juga menyajikan peta politik terkini dan respons dari para kandidat.</p>
+            <button style="padding:10px 20px; background-color:#28a745; color:white; border:none; border-radius:5px;">Beli Sekarang</button>
+			</div>
+        `;
+    } else if (koran === "tribun") {
+        isi = `
+            <div class="buku-item">
+			<img src="tribun.JPG" style="width:150px; margin-bottom:10px;">
+            <h3>Judul: Tribun News Update</h3>
+            <p><strong>Penerbit:</strong> Tribun Network</p>
+            <p><strong>Berita Utama:</strong> Jalan Tol Trans Jawa Dibuka Gratis Saat Liburan Panjang.</p>
+            <button style="padding:10px 20px; background-color:#28a745; color:white; border:none; border-radius:5px;">Beli Sekarang</button>
+			</div>
+			
+			<div class="buku-item">
+			<img src="jatengg.JPG" style="width:150px; margin-bottom:10px;">
+            <h3>Judul: Dampak Korupsi Maskapai di Jawa Tengah</h3>
+            <p><strong>Penerbit:</strong> PT Media Triloka Nusantara</p>
+            <p><strong>Berita Utama:</strong> Edisi ini menampilkan rubrik “Tribun Fokus” atau “Liputan Khusus” yang mendalam, mengangkat skandal korupsi maskapai penerbangan yang berdampak besar di wilayah Jateng—berita dijabarkan dalam beberapa artikel dengan sudut pandang berbeda.</p>
+            <button style="padding:10px 20px; background-color:#28a745; color:white; border:none; border-radius:5px;">Beli Sekarang</button>
+			</div>
+			
+			<div class="buku-item">
+			<img src="jabar.JPG" style="width:150px; margin-bottom:10px;">
+            <h3>Judul: Unjuk Rasa Tolak UU Cipta Kerja Ricuh di Bandung</h3>
+            <p><strong>Penerbit:</strong> PT Media Triloka Nusantara</p>
+            <p><strong>Berita Utama:</strong> Liputan halaman depan menyoroti aksi protes besar-besaran di Kota Bandung; melibatkan buruh dan mahasiswa yang melempari gedung DPRD Jabar dengan batu, menyebabkan ketegangan dan kerusuhan.</p>
+            <button style="padding:10px 20px; background-color:#28a745; color:white; border:none; border-radius:5px;">Beli Sekarang</button>
+			</div>
+        `;
+    } else if (koran === "jawapos") {
+        isi = `
+            <div class="buku-item">
+			<img src="piala.JPEG" style="width:150px; margin-bottom:10px;">
+            <h3>Judul: Jawa Pos Hari Ini</h3>
+            <p><strong>Penerbit:</strong> Jawa Pos Group</p>
+            <p><strong>Berita Utama:</strong> Kemenangan Timnas Membawa Harapan Baru di Piala Asia.</p>
+            <button style="padding:10px 20px; background-color:#28a745; color:white; border:none; border-radius:5px;">Beli Sekarang</button>
+			</div>
+			
+			<div class="buku-item">
+			<img src="blankpink.JPG" style="width:150px; margin-bottom:10px;">
+            <h3>Judul: BLACKPINK Resmi Rilis Singel ‘JUMP’ yang Menandai Kembalinya Grup Setelah Tiga Tahun Vakum</h3>
+            <p><strong>Penerbit:</strong> PT Jawa Pos Grup Multimedia</p>
+            <p><strong>Berita Utama:</strong> Berita tersebut menyoroti comeback BLACKPINK dengan single terbaru mereka setelah absen cukup lama.</p>
+            <button style="padding:10px 20px; background-color:#28a745; color:white; border:none; border-radius:5px;">Beli Sekarang</button>
+			</div>
+			
+			<div class="buku-item">
+			<img src="pln.JPEG" style="width:150px; margin-bottom:10px;">
+            <h3>Judul: PLN Gandeng Swiss Dorong Kerja Sama Pengembangan PLTA di Indonesia</h3>
+            <p><strong>Penerbit:</strong> PT Jawa Pos Grup Multimedia</p>
+            <p><strong>Berita Utama:</strong> Fokus pada kolaborasi antara PLN dan pihak Swiss dalam pengembangan pembangkit listrik tenaga air sebagai bagian dari strategi energi nasional.</p>
+            <button style="padding:10px 20px; background-color:#28a745; color:white; border:none; border-radius:5px;">Beli Sekarang</button>
+			</div>
+        `;
+    } else if (koran === "zonasi") {
+        isi = `
+            <div class="buku-item">
+			<img src="zonasi.JPEG" style="width:150px; margin-bottom:10px;">
+            <h3>Judul: Koran Zonasi Mingguan</h3>
+            <p><strong>Penerbit:</strong> Media Edukasi Zonasi</p>
+            <p><strong>Berita Utama:</strong> Perubahan Zonasi Sekolah Dasar di Beberapa Provinsi.</p>
+            <button style="padding:10px 20px; background-color:#28a745; color:white; border:none; border-radius:5px;">Beli Sekarang</button>
+			</div>
+			
+			<div class="buku-item">
+			<img src="sistem.PNG" style="width:150px; margin-bottom:10px;">
+            <h3>Judul: Sistem Zonasi untuk Tingkatkan Kualitas Pendidikan</h3>
+            <p><strong>Penerbit:</strong> MNC Media</p>
+            <p><strong>Berita Utama:</strong> Artikel ini mengulas kebijakan zonasi di PPDB sejak 2016, menyoroti tujuan pemerataan akses pendidikan, strategi distribusi guru, fleksibilitas wilayah zonasi, serta peran Kemendikbud dalam menyosialisasikan kebijakan ini untuk mencapai kesetaraan mutu sekolah.</p>
+            <button style="padding:10px 20px; background-color:#28a745; color:white; border:none; border-radius:5px;">Beli Sekarang</button>
+			</div>
+			
+			<div class="buku-item">
+			<img src="ppdb.JPG" style="width:150px; margin-bottom:10px;">
+            <h3>Judul: Sistem Zonasi PPDB Diterapkan di Tiga Kecamatan</h3>
+            <p><strong>Penerbit:</strong> PT Media Triloka Nusantara</p>
+            <p><strong>Berita Utama:</strong> Laporan ini fokus pada pelaksanaan zonasi PPDB di tiga kecamatan di Bulungan (Tanjung Selor, Tanjung Palas, Bunyu), dengan tujuan menghindari penumpukan murid di satu sekolah dan menjamin distribusi murid yang merata berbasis domisili.</p>
+            <button style="padding:10px 20px; background-color:#28a745; color:white; border:none; border-radius:5px;">Beli Sekarang</button>
+			</div>
+        `;
+    } else if (koran === "bahagia") {
+        isi = `
+            <div class="buku-item">
+			<img src="bahagia.JPG" style="width:150px; margin-bottom:10px;">
+            <h3>Judul: Mingguan Bahagia</h3>
+            <p><strong>Penerbit:</strong> Media Positif</p>
+            <p><strong>Berita Utama:</strong> Tips Hidup Sehat dan Bahagia ala Psikolog Indonesia.</p>
+            <button style="padding:10px 20px; background-color:#28a745; color:white; border:none; border-radius:5px;">Beli Sekarang</button>
+			</div>
+			
+			<div class="buku-item">
+			<img src="pameran.WEBP" style="width:150px; margin-bottom:10px;">
+            <h3>Judul: Seni dan Sains di Titik Sunyi: Sebuah Pameran tentang Diri, Cinta, dan Kesadaran” — mengupas detail pameran di rubrik “Minggu</h3>
+            <p><strong>Penerbit:</strong> Jawa Pos Group</p>
+            <p><strong>Berita Utama:</strong> Edisi Minggu koran Jawa Pos disajikan dalam format tabloid dengan fokus pada konten mendalam dan ringan: eksposisi budaya, ulasan seni, sains populer, cerpen, dan kolom reflektif. Glosanya menyasar pembaca saat akhir pekan dengan pendekatan yang lebih naratif dan human interest.</p>
+            <button style="padding:10px 20px; background-color:#28a745; color:white; border:none; border-radius:5px;">Beli Sekarang</button>
+			</div>
+			
+			<div class="buku-item">
+			<img src="minggu.JPEG" style="width:150px; margin-bottom:10px;">
+            <h3>Judul: Sapi Besar Gajah</h3>
+            <p><strong>Penerbit:</strong>  PT BP Kedaulatan Rakyat</p>
+            <p><strong>Berita Utama:</strong> Minggu Pagi dikenal sebagai koran mingguan ringan namun berisi, memuat campuran konten seperti cerpen, esai budaya, ulasan buku, dan peliputan eksklusif mengenai seni dan sains. Formatnya tabloid dan populer di Yogyakarta dan sekitarnya..</p>
+            <button style="padding:10px 20px; background-color:#28a745; color:white; border:none; border-radius:5px;">Beli Sekarang</button>
+			</div>
+        `;
+    } else if (koran === "kontan") {
+        isi = `
+            <div class="buku-item">
+			<img src="tabloid.JPG" style="width:150px; margin-bottom:10px;">
+            <h3>Judul: Tabloid Kontan</h3>
+            <p><strong>Penerbit:</strong> Kontan Media</p>
+            <p><strong>Berita Utama:</strong> Saham Teknologi Naik Drastis Pekan Ini, Investor Diuntungkan.</p>
+            <button style="padding:10px 20px; background-color:#28a745; color:white; border:none; border-radius:5px;">Beli Sekarang</button>
+			</div>
+			
+			<div class="buku-item">
+			<img src="garudaa.JPEG" style="width:150px; margin-bottom:10px;">
+            <h3>Judul: Garuda Indonesia Raih Tingkat Ketepatan Waktu 96,2% untuk Penerbangan Haji 2025</h3>
+            <p><strong>Penerbit:</strong> PT Grahanusa Mediatama</p>
+            <p><strong>Berita Utama:</strong> Liputan ini menyoroti capaian Garuda Indonesia dalam mengantarkan jemaah haji tepat waktu, melihat faktor operasional dan dampaknya terhadap citra maskapai.</p>
+            <button style="padding:10px 20px; background-color:#28a745; color:white; border:none; border-radius:5px;">Beli Sekarang</button>
+			</div>
+			
+			<div class="buku-item">
+			<img src="china.JPEG" style="width:150px; margin-bottom:10px;">
+            <h3>Judul: Teknologi China Bikin AS Ketar-ketir</h3>
+            <p><strong>Penerbit:</strong> PT Grahanusa Mediatama</p>
+            <p><strong>Berita Utama:</strong> Liputan-liputan ini mencakup tantangan global, kebijakan nasional, dan tren keuangan perbankan.</p>
+            <button style="padding:10px 20px; background-color:#28a745; color:white; border:none; border-radius:5px;">Beli Sekarang</button>
+			</div>
+        `;
+    }
+
+    bukuBox.innerHTML = isi;
+    bukuBox.style.display = "block";
+}
+	
+    </script>
+
+</body>
+</html>
